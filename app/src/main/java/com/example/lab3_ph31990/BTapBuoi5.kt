@@ -1,11 +1,9 @@
 package com.example.lab3_ph31990
 
-import android.icu.text.CaseMap.Title
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -18,6 +16,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,13 +30,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+
 
 class BTapBuoi5 : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,6 +98,18 @@ fun GetLayout(){
             ThanhToan("Zalo Pay", R.drawable.zalopay,Color(0xFF00c2fd))
             ThanhToan("Thanh toán trực tiếp", R.drawable.thanhtoantt,Color(0xFF18ebea))
         }
+
+
+        Button(
+            onClick = {},
+            colors = ButtonDefaults.buttonColors(Color(0xFFFFA726)),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text(text = "Tiếp theo", color = Color.White)
+        }
+        BottomNavigationBar()
     }
 }
 
@@ -121,13 +137,15 @@ fun ThanhToan(name: String, logo: Int,bg:Color){
     Row(
         modifier = Modifier
             .padding(5.dp)
-            .background(bg),
+            .background(bg, shape = RoundedCornerShape(15.dp)),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Spacer(modifier = Modifier.width(16.dp))
         Image(
             painter = painterResource(id = logo),
-            modifier = Modifier.size(40.dp),
+            modifier = Modifier
+                .size(55.dp)
+                .padding(4.dp),
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
@@ -164,5 +182,60 @@ fun DiaChiNhanHang() {
         Text(text = "22/333 đường Trung Mỹ Tây 1", color = Color.White)
         Text(text = "phường Tân Thới Nhất", color = Color.White)
         Text(text = "quận 12, Thành phố Hồ Chí Minh", color = Color.White)
+    }
+
+
+}
+
+@Composable
+fun BottomNavigationBar() {
+    NavigationBar(
+        containerColor = Color(0xFF262121),
+        contentColor = Color.White
+    ) {
+        NavigationBarItem(
+            icon = { Icon(painter = painterResource(id = R.drawable.ic_home), contentDescription = null) },
+            label = {
+                Text(
+                    text = "Trang chủ",
+                    style = TextStyle(color = Color.White)
+                )
+            },
+            selected = false,
+            onClick = {}
+        )
+        NavigationBarItem(
+            icon = { Icon(painter = painterResource(id = R.drawable.ic_calendar), contentDescription = null) },
+            label = {
+                Text(
+                    text = "Lịch sử",
+                    style = TextStyle(color = Color.White)
+                )
+            },
+            selected = false,
+            onClick = {}
+        )
+        NavigationBarItem(
+            icon = { Icon(painter = painterResource(id = R.drawable.ic_bag_24), contentDescription = null) },
+            label = {
+                Text(
+                    text = "Giỏ hàng",
+                    style = TextStyle(color = Color.White)
+                )
+            },
+            selected = true,
+            onClick = {}
+        )
+        NavigationBarItem(
+            icon = { Icon(painter = painterResource(id = R.drawable.ic_person_outline), contentDescription = null) },
+            label = {
+                Text(
+                    text = " Hồ Sơ ",
+                    style = TextStyle(color = Color.White)
+                )
+            },
+            selected = false,
+            onClick = {}
+        )
     }
 }
